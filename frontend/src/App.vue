@@ -14,7 +14,7 @@ export default Vue.extend({
     };
   },
   async mounted() {
-    const res = await axios.get('/hello');
+    const res = await axios.get('/user/all');
     console.log(res);
   },
 });
