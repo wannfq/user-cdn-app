@@ -13,7 +13,4 @@ FROM node:12 AS server
 WORKDIR /workspace
 COPY --from=builder /workspace/dist /workspace
 
-RUN adduser -D myuser
-USER myuser
-
 CMD ["node", "app/main.js"]
