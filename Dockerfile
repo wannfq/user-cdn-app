@@ -11,6 +11,6 @@ RUN npm run build
 FROM node:12 AS server
 
 WORKDIR /workspace
-COPY --from=builder /workspace/dist /workspace
+COPY --from=builder /workspace/dist /workspace/dist
 
-CMD ["node", "app/main.js"]
+CMD ["node", "dist/app/main.js"]
