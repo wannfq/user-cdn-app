@@ -1,3 +1,3 @@
 # CDN User App
 
-Sample for listing user
+Sample monorepo app for managing user
