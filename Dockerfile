@@ -13,3 +13,4 @@ WORKDIR /workspace
 COPY --from=builder /workspace /workspace
 
 CMD ["node", "dist/app/main.js"]
+EXPOSE $PORT

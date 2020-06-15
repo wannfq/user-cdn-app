@@ -28,7 +28,10 @@ const config = {
       {
         test: /\.ts$/,
         loader: "ts-loader",
-        options: { appendTsSuffixTo: [ /\.vue$/ ] },
+        options: {
+          appendTsSuffixTo: [ /\.vue$/ ],
+          configFile: "tsconfig.frontend.json"
+        },
         exclude: /node_modules/
       },
       {
