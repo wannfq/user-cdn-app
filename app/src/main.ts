@@ -8,7 +8,7 @@ async function bootstrap() {
 
   app.useStaticAssets(join(__dirname, '../../', 'dist/frontend'));
 
-  await app.listen(8000);
+  await app.listen(process.env.PORT || 3000);
 
   console.log(`Application is running on: ${await app.getUrl()}`);
 }

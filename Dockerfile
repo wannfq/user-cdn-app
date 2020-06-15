@@ -10,7 +10,10 @@ RUN npm run build
 
 FROM node:12 AS server
 
-COPY --from=builder /workspace /workspace
+WORKDIR /workspace
+COPY --from=builder /workspace/dist /workspace
 
-EXPOSE 8000
-CMD ["node", "dist/app/main.js"]
+RUN adduser -D myuser
+USER myuser
+
+CMD ["node", "app/main.js"]
