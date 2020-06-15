@@ -1,8 +1,8 @@
 {
-  "name": "nest-mono",
+  "name": "user-cdn-app",
   "version": "0.0.1",
   "description": "",
-  "author": "",
+  "author": "Wan Afiq <wannfq@gmail.com>",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
@@ -12,15 +12,16 @@
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
-    "start:prod": "node dist/main",
+    "start:prod": "node dist/app/main",
     "lint": "eslint \"{src,app,libs,test}/**/*.ts\" --fix",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./app/test/jest-e2e.json",
-    "fe:dev": "webpack-dev-server -d --mode development --config ./frontend/webpack.config.js",
-    "fe:watch": "webpack -d --watch --mode development --config ./frontend/webpack.config.js",
+    "fe:serve": "webpack-dev-server -d --mode development --config ./frontend/webpack.config.js",
+    "fe:dev": "webpack -d --mode development --config ./frontend/webpack.config.js",
+    "fe:watch": "npm run fe:dev -- --watch",
     "fe:build": "webpack -p --mode production  --config ./frontend/webpack.config.js"
   },
   "dependencies": {
