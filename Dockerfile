@@ -10,7 +10,7 @@ RUN npm run build
 
 FROM node:12 AS server
 
-COPY --from=builder /workspace/dist /workspace/dist
+COPY --from=builder /workspace /workspace
 
 EXPOSE $PORT
 CMD ["node", "dist/app/main.js"]
