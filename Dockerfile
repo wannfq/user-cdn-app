@@ -13,4 +13,4 @@ FROM node:12 AS server
 COPY --from=builder /workspace/dist /workspace/dist
 
 EXPOSE $PORT
-CMD ["node", "dist/main.js"]
+CMD ["node", "dist/app/main.js"]
