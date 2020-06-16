@@ -2,6 +2,7 @@ import { UserController, IGetUsersQueryParam } from './';
 import { UserService, ICollection } from '../services';
 import { User } from '../entities';
 import * as faker from 'faker';
+import { ICreateUserBodyParam } from './user.controller';
 
 describe('UserController', () => {
   let userController: UserController;
@@ -15,7 +16,6 @@ describe('UserController', () => {
     it('should return OK response', () => {
       userController = new UserController(mockUserService);
       const response = userController.health();
-      console.log(response);
       expect(response).toStrictEqual({
         message: 'OK',
       });
@@ -61,6 +61,46 @@ describe('UserController', () => {
       const response = await userController.getUsers(queryParam);
       expect(response).toStrictEqual({
         error: mockMessage,
+      });
+    });
+  });
+
+  describe('createUser', () => {
+    it('should create new user entity based on body', async () => {
+      const bodyParam: ICreateUserBodyParam = {
+        email: faker.internet.email(),
+        phone: faker.phone.phoneNumber(),
+        username: faker.internet.userName(),
+      };
+      mockUserService.createUser = async (user: User) => {
+        const newUser = new User();
+        newUser.email = bodyParam.email;
+        newUser.phone = bodyParam.phone;
+        newUser.username = bodyParam.username;
+        newUser.skillsets = null;
+        newUser.hobby = null;
+        expect(user).toStrictEqual(newUser);
+        return;
+      };
+      const userController = new UserController(mockUserService);
+      const response = await userController.createUser(bodyParam);
+      expect(response).toStrictEqual({
+        message: 'OK',
+      });
+    });
+  });
+
+  describe('delete', () => {
+    it('should update new user entity based on body', async () => {
+      const idParam: number = faker.random.number();
+      mockUserService.softDeleteUser = async (id: number) => {
+        expect(id).toBe(idParam);
+        return;
+      };
+      const userController = new UserController(mockUserService);
+      const response = await userController.deleteUser(idParam);
+      expect(response).toStrictEqual({
+        message: 'OK',
       });
     });
   });
