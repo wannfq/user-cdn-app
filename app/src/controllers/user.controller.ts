@@ -10,6 +10,7 @@ import {
 } from '@nestjs/common';
 import { UserService } from '../services/user.service';
 import { User } from '../entities';
+import * as faker from 'faker';
 
 @Controller()
 export class UserController {
@@ -60,6 +61,27 @@ export class UserController {
     }
   }
 
+  @Post('user/dummy')
+  async createDummyUser(): Promise<IResponse> {
+    try {
+      const dummyName: string = faker.name.firstName();
+      const user = new User();
+      user.email = faker.internet.email(dummyName);
+      user.username = faker.internet.userName(dummyName);
+      user.phone = faker.phone.phoneNumber();
+      user.skillsets = faker.random.words(faker.random.number(6));
+      user.hobby = faker.random.words(3);
+      await this.userService.createUser(user);
+      return {
+        message: 'OK',
+      };
+    } catch (e) {
+      return {
+        error: e.message,
+      };
+    }
+  }
+
   @Post('user/:id')
   async updateUser(
     @Param('id', new ParseIntPipe()) id: number,
@@ -72,24 +94,6 @@ export class UserController {
       user.phone = body.phone || null;
       user.skillsets = body.skillsets || null;
       user.hobby = body.hobby || null;
-      await this.userService.createUser(user);
-      return {
-        message: 'OK',
-      };
-    } catch (e) {
-      return {
-        error: e.message,
-      };
-    }
-  }
-
-  @Post('user/dummy')
-  async createDummyUser(): Promise<IResponse> {
-    try {
-      const user = new User();
-      user.email = 'dummy.email@domain.com';
-      user.username = 'dummy-username';
-      user.phone = '1118080808';
       await this.userService.createUser(user);
       return {
         message: 'OK',

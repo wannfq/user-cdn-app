@@ -1,9 +1,7 @@
-import { Test, TestingModule } from '@nestjs/testing';
 import { UserController, IGetUsersQueryParam } from './';
 import { UserService, ICollection } from '../services';
 import { User } from '../entities';
-import faker from 'faker';
-import { response } from 'express';
+import * as faker from 'faker';
 
 describe('UserController', () => {
   let userController: UserController;
@@ -41,6 +39,7 @@ describe('UserController', () => {
           : expect(offset).toBeUndefined;
         return mockResult;
       };
+      const userController = new UserController(mockUserService);
       const response = await userController.getUsers(queryParam);
       expect(response).toStrictEqual({
         message: 'OK',
@@ -58,9 +57,10 @@ describe('UserController', () => {
       mockUserService.getUsers = async (limit?: number, offset?: number) => {
         throw new Error(mockMessage);
       };
+      const userController = new UserController(mockUserService);
       const response = await userController.getUsers(queryParam);
       expect(response).toStrictEqual({
-        message: mockMessage,
+        error: mockMessage,
       });
     });
   });
