@@ -6,7 +6,7 @@ const HtmlPlugin = require('html-webpack-plugin');
 
 const config = {
   context: __dirname,
-  entry: './src/index.ts',
+  entry: './src/main.ts',
   output: {
     path: path.resolve(process.cwd(), 'dist/frontend'),
     filename: '[name].[contenthash].js'

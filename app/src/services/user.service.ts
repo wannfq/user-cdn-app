@@ -18,7 +18,8 @@ export class UserService {
     const q = this.connection
       .createQueryBuilder(User, 'user')
       .limit(limit)
-      .offset(offset);
+      .offset(offset)
+      .orderBy('created_at', 'DESC');
     const [data, count] = await q.getManyAndCount();
     return { count, data };
   }
