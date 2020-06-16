@@ -1,5 +1,5 @@
 <template>
-  <h1>{{ name }}</h1>
+  <div></div>
 </template>
 
 <script lang="ts">

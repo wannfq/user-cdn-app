@@ -1,1 +1,6 @@
-export { UserController } from './user.controller';
+export {
+  UserController,
+  IGetUsersQueryParam,
+  ICreateUserBodyParam,
+  IResponse,
+} from './user.controller';
