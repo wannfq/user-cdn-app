@@ -2,15 +2,15 @@
 
 Sample monorepo app for managing user. [Go to app](https://user-cdn-app.herokuapp.com/)
 
-##  Features
+## Features
 
-Backend
+### Backend
 - [x] Create user
 - [x] Get user
 - [x] Delete user
 - [ ] Update user
 
-Frontend
+### Frontend
 - [x] Create user (dummy)
 - [x] Get user
 - [x] Delete user
